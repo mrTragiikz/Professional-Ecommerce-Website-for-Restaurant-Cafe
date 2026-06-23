@@ -1,0 +1,565 @@
+/* --- Mobile Responsiveness --- */
+@media (max-width: 1024px) {
+    :root {
+        --sidebar-width: 240px;
+    }
+}
+
+@media (max-width: 768px) {
+    :root {
+        --header-height: 60px;
+    }
+
+    body.sidebar-open {
+        overflow: hidden;
+    }
+
+    .admin-sidebar {
+        transform: translateX(-100%);
+        width: 280px;
+        box-shadow: none;
+    }
+
+    .sidebar-open .admin-sidebar {
+        transform: translateX(0);
+        box-shadow: var(--shadow-lg);
+    }
+
+    .admin-main {
+        margin-left: 0 !important;
+        width: 100% !important;
+    }
+
+    /* Sidebar Overlay for Mobile */
+    .sidebar-open .admin-wrapper::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(15, 23, 42, 0.4);
+        backdrop-filter: blur(4px);
+        z-index: 90;
+        animation: fadeIn 0.2s ease;
+    }
+
+    .sidebar-toggle {
+        display: block !important;
+    }
+
+    .admin-header {
+        padding: 0 16px;
+    }
+
+    .page-title {
+        font-size: 18px;
+    }
+
+    .header-right {
+        gap: 10px !important;
+    }
+
+    .header-right>div:first-child {
+        display: none !important;
+        /* Hide dev info on small mobile */
+    }
+
+    .current-time-wrapper {
+        padding-left: 10px !important;
+        height: 30px !important;
+        border-left: 1px solid #e2e8f0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    #currentTime {
+        font-size: 13px !important;
+    }
+
+    .admin-content {
+        padding: 16px;
+    }
+
+    .dashboard-stats {
+        grid-template-columns: 1fr !important;
+        gap: 12px;
+    }
+
+    .stat-card {
+        padding: 16px;
+        gap: 12px;
+    }
+
+    .stat-icon {
+        width: 44px;
+        height: 44px;
+    }
+
+    .stat-value {
+        font-size: 24px;
+    }
+
+    /* Search & Controls */
+    .search-form {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+
+    .search-input-wrapper {
+        max-width: 100% !important;
+    }
+
+    .search-container {
+        flex-direction: column;
+        gap: 12px;
+        display: flex;
+    }
+
+    .search-container .btn-primary {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .filter-tabs {
+        overflow-x: auto;
+        padding-bottom: 8px;
+        -webkit-overflow-scrolling: touch;
+        flex-wrap: nowrap;
+        gap: 6px;
+        display: flex;
+    }
+
+    .filter-tab {
+        white-space: nowrap;
+        padding: 8px 12px;
+        font-size: 12px;
+        border-width: 1px;
+    }
+
+    /* Orders List */
+    .orders-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .order-card-header {
+        flex-direction: column;
+        gap: 10px;
+        padding: 12px;
+        align-items: flex-start !important;
+    }
+
+    .order-header-right {
+        width: 100%;
+    }
+
+    .order-status-badge {
+        display: block;
+        text-align: center;
+        width: 100%;
+    }
+
+    .order-essential-row {
+        flex-direction: column !important;
+        gap: 12px !important;
+        padding-bottom: 12px;
+    }
+
+    .essential-info {
+        width: 100%;
+    }
+
+    .essential-total {
+        text-align: left !important;
+        margin-left: 0 !important;
+        padding-top: 12px;
+        border-top: 1px dashed var(--border-color);
+        width: 100%;
+    }
+
+    .order-card-footer {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 15px;
+        padding: 12px;
+    }
+
+    .order-actions-left {
+        flex-direction: column;
+        gap: 8px;
+        width: 100%;
+    }
+
+    .order-actions-left .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .status-update-group {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+        width: 100%;
+    }
+
+    .status-select {
+        width: 100% !important;
+        height: 40px;
+    }
+
+    .status-label {
+        font-size: 11px;
+    }
+
+    /* Modals */
+    .modal-content {
+        width: 100% !important;
+        height: 100% !important;
+        max-height: 100vh !important;
+        border-radius: 0 !important;
+    }
+
+    .modal-body {
+        padding: 15px;
+    }
+
+    .od-content-grid {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+    }
+
+    .od-sidebar-col {
+        width: 100% !important;
+    }
+
+    .od-main-col {
+        width: 100% !important;
+    }
+
+    .modal-content {
+        width: 95% !important;
+        margin: 20px auto !important;
+    }
+
+    /* Pagination */
+    .pagination {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 5px;
+        display: flex;
+    }
+
+    .pagination-btn {
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+
+    /* --- Total Sales (Statements) Polished Mobile Layout --- */
+    .screen-header.admin-actions-flex {
+        padding: 0 5px !important;
+        margin-bottom: 15px !important;
+    }
+
+    .screen-header h1 {
+        font-size: 18px !important;
+    }
+
+    .informational-alert {
+        padding: 8px 12px !important;
+        gap: 8px !important;
+        border-radius: 10px !important;
+    }
+
+    .informational-alert div:nth-child(2) {
+        font-size: 11px !important;
+    }
+
+    .admin-actions-flex:not(.screen-header) {
+        flex-direction: column !important;
+        padding: 12px !important;
+        gap: 12px !important;
+        border-radius: 12px !important;
+    }
+
+    .rider-date-group {
+        border: none !important;
+        padding: 0 !important;
+        box-shadow: none !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 6px !important;
+    }
+
+    .rider-date-label {
+        font-size: 10px !important;
+        padding-left: 2px;
+    }
+
+    .rider-date-input {
+        width: 100% !important;
+        height: 44px !important;
+        padding: 0 15px !important;
+        font-size: 15px !important;
+        background: #f8fafc !important;
+        border: 1px solid #e2e8f0 !important;
+    }
+
+    .export-btn-container button {
+        width: 100% !important;
+        height: 44px !important;
+        justify-content: center !important;
+        background: #1e293b !important;
+        /* Change brown to slate dark */
+        font-size: 13px !important;
+    }
+
+    /* Stats Grid Refinement */
+    .stats-grid-wrapper {
+        grid-template-columns: 1fr !important;
+        /* Stack main ones */
+        gap: 10px !important;
+    }
+
+    /* Make the smaller cash/online side-by-side */
+    .stats-grid-wrapper .stats-card:nth-child(3),
+    .stats-grid-wrapper .stats-card:nth-child(4) {
+        grid-column: span 1;
+    }
+
+    /* Re-order for 2-col small cards */
+    @media (max-width: 768px) {
+        .stats-grid-wrapper {
+            display: grid !important;
+            grid-template-columns: repeat(2, 1fr) !important;
+        }
+
+        .stats-card-indigo,
+        .stats-card-dark {
+            grid-column: span 2 !important;
+        }
+    }
+
+    .stats-card {
+        padding: 12px 15px !important;
+        min-height: auto !important;
+    }
+
+    .stats-card h3 {
+        font-size: 8px !important;
+        margin-bottom: 2px !important;
+    }
+
+    .stats-card div {
+        font-size: 18px !important;
+    }
+
+    .stats-card div[style*="opacity: 0.7"],
+    .stats-card div[style*="opacity: 0.6"] {
+        font-size: 10px !important;
+    }
+
+    /* Table Optimization */
+    .table-responsive {
+        border-radius: 10px !important;
+        margin: 0 !important;
+    }
+
+    .table-responsive table {
+        min-width: 550px !important;
+        /* Slightly less than before to prevent too much scroll */
+    }
+
+    .table-responsive th {
+        padding: 10px 12px !important;
+        font-size: 11px !important;
+    }
+
+    .table-responsive td {
+        padding: 12px 10px !important;
+        font-size: 13px !important;
+    }
+
+    /* Specific Cell Content Polishing */
+    .table-responsive td [style*="Paid By Cash"],
+    .table-responsive td [style*="Paid By Online"] {
+        font-size: 9px !important;
+        padding: 2px 6px !important;
+    }
+
+    .table-responsive td span[style*="Customer:"],
+    .table-responsive td div[style*="RIDER:"] {
+        font-size: 10px !important;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 140px;
+        margin-top: 2px !important;
+    }
+
+    /* Keep amount and receipt columns smaller */
+    .table-responsive th:nth-child(4),
+    .table-responsive td:nth-child(4) {
+        width: 80px !important;
+        padding-right: 15px !important;
+    }
+
+    .table-responsive th:last-child,
+    .table-responsive td:last-child {
+        width: 90px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .order-id {
+        font-size: 15px !important;
+    }
+
+    .total-amount {
+        font-size: 18px !important;
+    }
+
+    .page-title {
+        font-size: 16px;
+    }
+
+    .header-right {
+        display: none !important;
+        /* Extremely small screens, just show title and menu */
+    }
+
+    /* --- Modal Fixes for Small Mobile --- */
+    .modal {
+        padding: 0 !important;
+    }
+
+    .modal-content {
+        width: 100% !important;
+        height: 100dvh !important;
+        max-height: 100dvh !important;
+        margin: 0 !important;
+        border-radius: 0 !important;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .modal-body {
+        flex: 1;
+        overflow-y: auto;
+        padding: 12px !important;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .modal-header h2 {
+        font-size: 18px !important;
+    }
+
+    /* --- Order Detail Premium Responsive Tweak --- */
+    .order-detail-premium {
+        padding: 5px !important;
+    }
+
+    .od-header {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 12px !important;
+        padding-bottom: 20px !important;
+        margin-bottom: 15px !important;
+    }
+
+    .od-id-wrapper {
+        gap: 8px !important;
+    }
+
+    .od-id {
+        font-size: 20px !important;
+    }
+
+    .od-meta {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 6px !important;
+    }
+
+    .od-meta span {
+        font-size: 12px !important;
+    }
+
+    .od-items-header {
+        display: none !important;
+    }
+
+    .od-item-row {
+        grid-template-columns: 30px 1fr 60px !important;
+        padding: 12px 10px !important;
+        gap: 8px !important;
+        font-size: 13px !important;
+    }
+
+    .od-col-price,
+    .od-col-total {
+        display: none !important;
+        /* Hide on mobile to prevent overflow */
+    }
+
+    .od-items-scroll-area {
+        max-height: none !important;
+        /* Allow natural flow in full modal */
+    }
+
+    .od-totals-wrapper {
+        padding: 12px !important;
+        gap: 10px !important;
+        margin-top: 15px !important;
+    }
+
+    .od-total-row {
+        font-size: 14px !important;
+    }
+
+    .od-total-row.final {
+        font-size: 16px !important;
+        padding-top: 10px !important;
+        margin-top: 5px !important;
+    }
+
+    .od-card {
+        margin-bottom: 10px !important;
+    }
+
+    .od-card-header {
+        padding: 10px 12px !important;
+        font-size: 12px !important;
+    }
+
+    .od-card-body {
+        padding: 12px !important;
+        gap: 12px !important;
+    }
+
+    .od-info-group label {
+        font-size: 10px !important;
+    }
+
+    .od-info-value {
+        font-size: 13px !important;
+    }
+
+    .od-info-value-row {
+        flex-wrap: wrap !important;
+        gap: 6px !important;
+    }
+
+    .od-action-btn {
+        width: 34px !important;
+        height: 34px !important;
+    }
+
+    .od-action-btn svg {
+        width: 16px !important;
+        height: 16px !important;
+    }
+}

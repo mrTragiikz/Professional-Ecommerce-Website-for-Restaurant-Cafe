@@ -1,0 +1,62 @@
+# ============================================================================
+# GIT IGNORE - JustKleek Food Delivery Platform
+# ============================================================================
+
+# Secure configuration files (NEVER commit these!)
+secure_config/*.php
+!secure_config/*.example.php
+!secure_config/.htaccess
+!secure_config/README.md
+
+# Old config files with credentials (after migration, these can be removed)
+config/db.php
+app/config/email.php
+app/config/google_oauth.php
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Logs and debug artifacts (contain emails, OTPs, internal paths)
+*.log
+logs/
+error_log
+smtp_debug.txt
+latest_otp.txt
+
+# Database dumps (may contain real customer/order data)
+*.sql
+*.sql.gz
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE files
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Uploads (user-generated content)
+uploads/profile_pictures/*
+!uploads/profile_pictures/.gitkeep
+
+# Cache
+cache/
+*.cache
+
+# Backup files
+*.bak
+*.backup
+*_backup.*
+

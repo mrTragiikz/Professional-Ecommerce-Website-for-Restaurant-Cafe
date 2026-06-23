@@ -1,0 +1,54 @@
+/* ============================================
+   MAIN STYLESHEET - IMPORT ALL CSS FILES
+   ============================================
+   
+   This is the main CSS file that imports all other
+   stylesheets in the correct order. Import this
+   single file in your HTML/PHP pages.
+   
+   Load Order:
+   1. Variables (design tokens)
+   2. Base (reset, typography)
+   3. Components (reusable UI components)
+   4. Pages (page-specific styles)
+   5. Responsive (media queries)
+   ============================================ */
+
+/* ========================================
+   STEP 1: DESIGN TOKENS & VARIABLES
+   ======================================== */
+@import url('variables.css');
+
+/* ========================================
+   STEP 2: BASE STYLES & RESET
+   ======================================== */
+@import url('base.css');
+
+/* ========================================
+   STEP 3: COMPONENTS (Reusable UI)
+   ======================================== */
+@import url('components/navbar.css');
+@import url('components/buttons.css');
+@import url('components/modals.css');
+@import url('components/forms.css');
+
+/* ========================================
+   STEP 4: PAGE-SPECIFIC STYLES
+   ======================================== */
+@import url('pages/home.css');
+@import url('pages/menu.css');
+@import url('pages/cart.css');
+@import url('pages/reservation.css');
+@import url('pages/order-tracking.css');
+@import url('pages/basket.css');
+
+/* ========================================
+   STEP 5: RESPONSIVE STYLES
+   ======================================== */
+@import url('responsive.css');
+
+/* ========================================
+   STEP 6: ANIMATIONS & KEYFRAMES
+   ======================================== */
+@import url('animations.css');
+

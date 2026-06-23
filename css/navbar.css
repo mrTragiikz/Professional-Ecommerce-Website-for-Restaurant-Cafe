@@ -1,0 +1,459 @@
+/* ============================================
+   NAVBAR - MODERN CSS3 GLOSSY GLASS
+   ============================================ */
+
+.navbar {
+    /* Container Query */
+    container-type: inline-size;
+    container-name: navbar;
+
+    /* Positioning */
+    position: sticky;
+    top: 0;
+    z-index: var(--z-navbar);
+
+    /* Modern Glass Morphism - Green */
+    background: linear-gradient(135deg,
+            var(--glass-bg) 0%,
+            rgba(40, 160, 90, 0.45) 25%,
+            rgba(30, 140, 75, 0.40) 50%,
+            rgba(40, 160, 90, 0.45) 75%,
+            var(--glass-bg) 100%);
+
+    /* Reduced Padding - Smaller Navbar */
+    padding: 0.75rem 0;
+
+    /* Advanced Shadows - Warm Amber */
+    box-shadow:
+        0 8px 32px 0 var(--glass-shadow),
+        0 4px 16px 0 rgba(180, 130, 0, 0.08),
+        inset 0 -1px 0 rgba(255, 230, 120, 0.5);
+
+    /* Backdrop Filter */
+    backdrop-filter: var(--blur-lg) saturate(180%) brightness(1.15);
+    -webkit-backdrop-filter: var(--blur-lg) saturate(180%) brightness(1.15);
+
+    /* Borders - Creamy Yellow */
+    border-bottom: 1px solid var(--glass-border);
+    /* border-top removed as per request */
+
+    /* Typography */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+
+    /* Layout */
+    position: relative;
+    /* overflow: hidden; - Removed to prevent cutting off dropdowns if any, and simplifies layout */
+
+    /* Performance */
+    will-change: transform, opacity;
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+
+    /* Scroll Animation */
+    animation: slideDownNav var(--transition-slow) cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-timeline: --page-scroll;
+    animation-range: entry 0% entry 100%;
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg,
+                transparent 0%,
+                rgba(255, 240, 130, 0.25) 50%,
+                transparent 100%);
+        pointer-events: none;
+        will-change: transform;
+        animation: shimmerGlow 4s ease-in-out infinite;
+        transform: translate3d(0, 0, 0);
+        -webkit-transform: translate3d(0, 0, 0);
+        z-index: 1;
+    }
+
+    /* :has() Selector - Enhanced when has active link */
+    &:has(.nav-menu a:hover) {
+        box-shadow:
+            0 12px 40px 0 rgba(0, 0, 0, 0.15),
+            0 6px 20px 0 rgba(0, 0, 0, 0.1),
+            inset 0 1px 0 rgba(255, 255, 255, 0.8),
+            inset 0 -1px 0 rgba(255, 255, 255, 0.4);
+    }
+}
+
+.nav-container {
+    /* Container Query */
+    container-type: inline-size;
+    container-name: nav-container;
+
+    /* Grid Layout */
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-areas: "logo menu";
+    gap: var(--spacing-xl);
+    align-items: center;
+
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-xl);
+    position: relative;
+    z-index: 10;
+    width: 100%;
+
+    /* Container Query Breakpoints */
+    @container nav-container (max-width: 768px) {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "logo"
+            "menu";
+        gap: var(--spacing-md);
+        padding: 0 var(--spacing-md);
+    }
+}
+
+.nav-menu {
+    /* Flexbox */
+    display: flex !important;
+    list-style: none;
+    gap: var(--spacing-xl);
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    grid-area: menu;
+    justify-content: flex-end;
+    position: relative;
+    z-index: 10;
+    visibility: visible !important;
+    opacity: 1 !important;
+
+    /* Nesting */
+    @container nav-container (max-width: 768px) {
+        gap: var(--spacing-md);
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    li {
+        position: relative;
+        z-index: 2;
+
+        /* :has() for active state */
+        &:has(a:hover) {
+            transform: translateY(-2px);
+        }
+    }
+}
+
+.nav-menu a {
+    /* Typography */
+    text-decoration: none;
+    color: #000000 !important;
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-shadow: none;
+
+    /* Layout */
+    position: relative;
+    padding: 0.5rem 1rem;
+    display: inline-block !important;
+    z-index: 11;
+    visibility: visible !important;
+    opacity: 1 !important;
+
+    /* 3D Transforms */
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+    transform-style: preserve-3d;
+    perspective: 1000px;
+
+    /* Performance */
+    will-change: transform, color;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+
+    /* Transitions */
+    transition:
+        color var(--transition-base),
+        transform var(--transition-base);
+
+    /* Nesting - Pseudo Elements */
+    &::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translate3d(-50%, 0, 0);
+        width: 0;
+        height: 3px;
+        background: linear-gradient(90deg,
+                transparent 0%,
+                rgba(212, 184, 150, 0.8) 20%,
+                var(--color-accent) 50%,
+                rgba(212, 184, 150, 0.8) 80%,
+                transparent 100%);
+        border-radius: 2px;
+        transition: all var(--transition-base);
+        box-shadow:
+            0 2px 8px rgba(212, 184, 150, 0.6),
+            0 0 12px rgba(212, 184, 150, 0.4);
+        will-change: width;
+        transform-origin: center;
+        z-index: 1;
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate3d(-50%, -50%, 0) scale(0) rotateX(90deg);
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle,
+                rgba(255, 255, 255, 0.2) 0%,
+                transparent 70%);
+        border-radius: 12px;
+        opacity: 0;
+        transition: all var(--transition-base);
+        pointer-events: none;
+        will-change: transform, opacity;
+        z-index: 0;
+    }
+
+    /* Hover State with 3D */
+    &:hover {
+        color: #000000;
+        transform: translate3d(0, -3px, 0) rotateX(5deg);
+
+        &::before {
+            width: 85%;
+            height: 3px;
+            box-shadow:
+                0 3px 12px rgba(212, 184, 150, 0.8),
+                0 0 16px rgba(212, 184, 150, 0.5);
+        }
+
+        &::after {
+            transform: translate3d(-50%, -50%, 0) scale(1) rotateX(0deg);
+            opacity: 1;
+        }
+    }
+
+    /* Active State */
+    &:active {
+        transform: translate3d(0, -1px, 0) scale(0.98);
+    }
+}
+
+/* Staggered Animation with Scroll Timeline */
+.nav-menu li {
+    &:nth-child(1) a {
+        animation: fadeInUp3D 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+        animation-timeline: --page-scroll;
+        animation-range: entry 0% entry 20%;
+    }
+
+    &:nth-child(2) a {
+        animation: fadeInUp3D 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+        animation-timeline: --page-scroll;
+        animation-range: entry 0% entry 25%;
+    }
+
+    &:nth-child(3) a {
+        animation: fadeInUp3D 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+        animation-timeline: --page-scroll;
+        animation-range: entry 0% entry 30%;
+    }
+
+    &:nth-child(4) a {
+        animation: fadeInUp3D 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both;
+        animation-timeline: --page-scroll;
+        animation-range: entry 0% entry 35%;
+    }
+}
+
+.logo {
+    /* Grid Area */
+    grid-area: logo;
+
+    /* Flexbox */
+    display: flex !important;
+    align-items: center;
+    visibility: visible !important;
+    opacity: 1 !important;
+
+    /* Layout */
+    position: relative;
+    padding: 0.5rem 1rem;
+    border-radius: 12px;
+    z-index: 10;
+
+    /* Glass Morphism */
+    background: linear-gradient(135deg,
+            rgba(255, 255, 255, 0.3) 0%,
+            rgba(255, 255, 255, 0.2) 50%,
+            rgba(255, 255, 255, 0.25) 100%);
+    backdrop-filter: var(--blur-md) saturate(150%);
+    -webkit-backdrop-filter: var(--blur-md) saturate(150%);
+
+    /* Shadows */
+    box-shadow:
+        0 8px 24px rgba(0, 0, 0, 0.12),
+        0 4px 12px rgba(0, 0, 0, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.3);
+
+    /* 3D Transforms */
+    transform: translate3d(0, 0, 0);
+    transform-style: preserve-3d;
+    perspective: 1000px;
+
+    /* Performance */
+    will-change: transform, box-shadow;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+
+    /* Transitions */
+    transition:
+        transform var(--transition-base),
+        background var(--transition-base),
+        box-shadow var(--transition-base);
+
+    /* Animation with Scroll Timeline */
+    animation: logoFadeInScale3D 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.5s both;
+    animation-timeline: --page-scroll;
+    animation-range: entry 0% entry 15%;
+
+    /* Nesting - Pseudo Elements */
+    &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: 12px;
+        padding: 1px;
+        background: linear-gradient(135deg,
+                rgba(255, 255, 255, 0.4),
+                rgba(255, 255, 255, 0.1));
+        -webkit-mask:
+            linear-gradient(#fff 0 0) content-box,
+            linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        opacity: 0;
+        transition: opacity var(--transition-base);
+        z-index: 1;
+    }
+
+    /* :has() - Enhanced when image loaded */
+    &:has(.logo-img[src]) {
+        box-shadow:
+            0 10px 28px rgba(0, 0, 0, 0.14),
+            0 5px 14px rgba(0, 0, 0, 0.1),
+            inset 0 1px 0 rgba(255, 255, 255, 0.65),
+            inset 0 -1px 0 rgba(255, 255, 255, 0.35);
+    }
+
+    /* Hover with 3D */
+    &:hover {
+        transform: translate3d(0, -4px, 10px) rotateY(-2deg);
+        background: linear-gradient(135deg,
+                rgba(255, 255, 255, 0.4) 0%,
+                rgba(255, 255, 255, 0.3) 50%,
+                rgba(255, 255, 255, 0.35) 100%);
+        box-shadow:
+            0 12px 32px rgba(0, 0, 0, 0.18),
+            0 6px 16px rgba(0, 0, 0, 0.12),
+            inset 0 1px 0 rgba(255, 255, 255, 0.7),
+            inset 0 -1px 0 rgba(255, 255, 255, 0.4);
+
+        &::before {
+            opacity: 1;
+        }
+
+        .logo-img {
+            transform: translate3d(0, 0, 15px) scale(1.08) rotateY(2deg);
+            filter:
+                drop-shadow(0 6px 16px rgba(0, 0, 0, 0.35)) brightness(1.12) contrast(1.08);
+        }
+    }
+}
+
+.logo-img {
+    /* Sizing - Reduced for smaller navbar */
+    height: 40px;
+    width: auto;
+    max-width: 220px;
+    object-fit: contain;
+    position: relative;
+    z-index: 11;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+
+    /* Image Quality */
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+
+    /* Filters */
+    filter:
+        drop-shadow(0 4px 12px rgba(0, 0, 0, 0.25)) brightness(1.08) contrast(1.05);
+
+    /* Typography */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    /* 3D Transforms */
+    transform: translate3d(0, 0, 0);
+    transform-style: preserve-3d;
+
+    /* Performance */
+    will-change: transform, filter;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+
+    /* Transitions */
+    transition:
+        transform var(--transition-base),
+        filter var(--transition-base);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 0.6rem 0;
+    }
+
+    .nav-container {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+        padding: 0 var(--spacing-md);
+    }
+
+    .logo {
+        padding: 0.4rem 0.8rem;
+    }
+
+    .logo-img {
+        height: 35px;
+        max-width: 180px;
+    }
+
+    .nav-menu {
+        gap: var(--spacing-sm);
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .nav-menu a {
+        font-size: 0.85rem;
+        padding: 0.4rem 0.8rem;
+    }
+}

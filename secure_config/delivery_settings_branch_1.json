@@ -1,0 +1,5 @@
+{
+    "base_fee": 15,
+    "rate_per_km": 20,
+    "max_distance": 25
+}

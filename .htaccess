@@ -1,0 +1,79 @@
+# =============================================================================
+# NO CACHE for session-dependent pages (index, menu, profile, cart, etc.)
+# Essential: prevents guest navbar from being served after login
+# =============================================================================
+<IfModule mod_headers.c>
+    <FilesMatch "^(index\.php|menu\.php|profile\.php|cart\.php|basket\.php|order-tracking\.php)$">
+        Header set Cache-Control "no-store, no-cache, must-revalidate, max-age=0"
+        Header set Pragma "no-cache"
+        Header set Expires "0"
+        Header set Vary "Cookie"
+    </FilesMatch>
+</IfModule>
+
+<IfModule mod_expires.c>
+    # Exclude dynamic PHP pages from default caching
+    <FilesMatch "^(index\.php|menu\.php|profile\.php|cart\.php|basket\.php|order-tracking\.php)$">
+        ExpiresActive Off
+    </FilesMatch>
+</IfModule>
+
+# Enable Compression
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json
+</IfModule>
+
+# Caching Headers
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/jpg "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/pdf "access plus 1 month"
+    ExpiresByType text/x-javascript "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType application/x-shockwave-flash "access plus 1 month"
+    ExpiresByType image/x-icon "access plus 1 year"
+    ExpiresDefault "access plus 2 days"
+</IfModule>
+
+<IfModule mod_headers.c>
+    <FilesMatch "\.(ico|pdf|flv|jpg|jpeg|png|gif|js|css|swf|svg)$">
+        Header set Cache-Control "max-age=31536000, public"
+    </FilesMatch>
+</IfModule>
+
+# Security Headers (Optional but recommended)
+<IfModule mod_headers.c>
+    Header set X-XSS-Protection "1; mode=block"
+    Header set X-Content-Type-Options "nosniff"
+</IfModule>
+
+# ============================================================================
+# Pretty URLs for main customer pages (no .php in browser)
+# ============================================================================
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Support either root domain (production) or /justkleek/ subfolder (localhost)
+    # By omitting RewriteBase entirely, the server resolves rules relative 
+    # to the directory where this .htaccess file is located. This makes
+    # the configuration work natively on both dev and production.
+    # RewriteBase /
+
+    # Do not rewrite existing files or directories
+    RewriteCond %{REQUEST_FILENAME} -f [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^ - [L]
+
+    # Clean routes -> PHP files
+    RewriteRule ^index/?$ index.php [L,QSA]
+    RewriteRule ^menu/?$ menu.php [L,QSA]
+    RewriteRule ^cart/?$ cart.php [L,QSA]
+    RewriteRule ^basket/?$ basket.php [L,QSA]
+    RewriteRule ^track-order/?$ track_order.php [L,QSA]
+    RewriteRule ^profile/?$ profile.php [L,QSA]
+</IfModule>

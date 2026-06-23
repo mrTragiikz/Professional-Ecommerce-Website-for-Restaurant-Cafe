@@ -1,0 +1,159 @@
+body.dv-nav-open {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+}
+
+@media (max-width: 992px) {
+
+
+    .navbar__mobile-buttons {
+        align-items: center;
+        justify-content: flex-end;
+        gap: 12px;
+        margin-right: 0;
+    }
+
+
+
+    .dv-nav-overlay {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: rgba(0, 0, 0, 0.55);
+        overscroll-behavior: none;
+        touch-action: none;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 0.25s ease, visibility 0.25s ease;
+        z-index: 2147483645;
+    }
+
+    .dv-nav-overlay.dv-active {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+    }
+
+    .dv-nav-drawer {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 320px;
+        max-width: 86vw;
+        height: 100vh;
+        background: linear-gradient(180deg, #ffffff 0%, #f9fafb 40%, #f3f4f6 100%);
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior: contain;
+        touch-action: pan-y;
+        transform: translateX(100%);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 2147483646;
+        box-shadow: -18px 0 45px rgba(15, 23, 42, 0.28);
+        display: flex;
+        flex-direction: column;
+        padding: 18px;
+        gap: 18px;
+        border-radius: 20px 0 0 20px;
+    }
+
+    .dv-nav-drawer.dv-active {
+        transform: translateX(0);
+    }
+
+    .dv-nav-drawer-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding-top: 4px;
+        padding-bottom: 4px;
+    }
+
+    .dv-nav-title {
+        font-size: 19px;
+        font-weight: 700;
+        color: #0f172a;
+        letter-spacing: 0.02em;
+    }
+
+    .dv-nav-close-btn {
+        width: 40px;
+        height: 40px;
+        border: none;
+        border-radius: 12px;
+        background: rgba(15, 23, 42, 0.06);
+        color: #0f172a;
+        font-size: 28px;
+        line-height: 1;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+    }
+
+    .dv-nav-links {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding-top: 12px;
+    }
+
+    .dv-nav-links a {
+        display: block;
+        padding: 12px 16px;
+        border-radius: 12px;
+        text-decoration: none;
+        color: #111827;
+        font-size: 16px;
+        font-weight: 500;
+        background: rgba(15, 23, 42, 0.02);
+        transition: background-color 0.18s ease, color 0.18s ease, transform 0.16s ease;
+    }
+
+    .dv-nav-links a:hover {
+        background: rgba(15, 23, 42, 0.06);
+        transform: translateX(2px);
+    }
+
+    .dv-nav-links a.dv-nav-logout {
+        margin-top: 12px;
+        background: rgba(220, 38, 38, 0.08);
+        color: #b91c1c;
+        font-weight: 600;
+    }
+
+    .dv-nav-links a:active {
+        background: rgba(15, 23, 42, 0.08);
+    }
+}
+
+@media (max-width: 768px) {
+    .dv-nav-links a.nav-active:not(.dv-nav-logout) {
+        background: var(--orange, #FFA53B);
+        color: #ffffff;
+        transition: background-color 0.25s ease, color 0.25s ease;
+    }
+
+    .dv-nav-links a.nav-active:not(.dv-nav-logout) svg {
+        fill: #ffffff;
+        stroke: #ffffff;
+        transition: fill 0.25s ease, stroke 0.25s ease;
+    }
+}
+
+@media (min-width: 993px) {
+
+    .dv-nav-open-btn,
+    .dv-nav-overlay,
+    .dv-nav-drawer {
+        display: none !important;
+    }
+}

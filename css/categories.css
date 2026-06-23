@@ -1,0 +1,61 @@
+/* ============================================
+   FEATURED CATEGORIES
+   ============================================ */
+
+.featured-categories {
+    padding: 3rem 2rem;
+    background-color: var(--color-bg-primary);
+    overflow-x: auto;
+    position: relative;
+    z-index: var(--z-content);
+}
+
+.categories-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    gap: 1rem;
+    padding: 1rem 0;
+    overflow-x: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-accent) var(--color-bg-primary);
+}
+
+.categories-container::-webkit-scrollbar {
+    height: 8px;
+}
+
+.categories-container::-webkit-scrollbar-track {
+    background: var(--color-bg-primary);
+}
+
+.categories-container::-webkit-scrollbar-thumb {
+    background: var(--color-accent);
+    border-radius: 4px;
+}
+
+.category-pill {
+    background-color: var(--color-white);
+    border: 1px solid var(--color-accent);
+    color: var(--color-text-primary);
+    padding: 10px 18px;
+    border-radius: 20px;
+    white-space: nowrap;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.category-pill:hover {
+    transform: scale(1.1);
+    background-color: var(--color-bg-secondary);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+
+
+
+

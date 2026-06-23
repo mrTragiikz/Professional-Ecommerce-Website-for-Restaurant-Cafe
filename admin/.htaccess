@@ -1,0 +1,25 @@
+# ============================================================================
+# ADMIN PANEL SECURITY
+# ============================================================================
+
+# Only allow access to specific IPs (optional - uncomment and add your IPs)
+# <RequireAll>
+#     Require ip 127.0.0.1
+#     Require ip YOUR_IP_ADDRESS
+# </RequireAll>
+
+# Prevent directory listing
+Options -Indexes
+
+# Additional security headers for admin
+<IfModule mod_headers.c>
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-XSS-Protection "1; mode=block"
+</IfModule>
+
+# Block access to sensitive files
+<FilesMatch "\.(log|sql|bak|backup|old)$">
+    Require all denied
+</FilesMatch>
+

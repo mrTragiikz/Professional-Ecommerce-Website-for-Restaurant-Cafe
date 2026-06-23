@@ -1,0 +1,18 @@
+/* ============================================
+   FOOTER
+   ============================================ */
+
+.footer {
+    background-color: var(--color-bg-secondary);
+    padding: 2rem;
+    text-align: center;
+    color: var(--color-text-primary);
+    font-size: 0.9rem;
+    position: relative;
+    z-index: var(--z-content);
+}
+
+
+
+
+

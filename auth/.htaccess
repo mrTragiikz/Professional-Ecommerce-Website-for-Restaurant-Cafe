@@ -1,0 +1,18 @@
+# Auth-only overrides
+<IfModule mod_headers.c>
+    # Ensure geolocation is permitted specifically under /auth
+    Header always unset Permissions-Policy
+    Header always set Permissions-Policy "geolocation=(self)"
+
+    # Bypass caches for auth flows to avoid header caching issues
+    Header always set Cache-Control "no-store, no-cache, must-revalidate, max-age=0"
+    Header always set X-LiteSpeed-Cache-Control "no-cache"
+    Header always set Pragma "no-cache"
+    Header always set Expires "0"
+</IfModule>
+
+# LiteSpeed/Apache: ensure rewrites are available if needed
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    # No rewrite rules needed; engine enabled for compatibility
+</IfModule>

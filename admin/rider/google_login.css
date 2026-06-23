@@ -1,0 +1,367 @@
+:root {
+    --google-blue: #1a73e8;
+    --google-blue-hover: #1765cc;
+    --google-gray: #5f6368;
+    --google-border: #dadce0;
+    --google-error: #d93025;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #fff;
+    color: #202124;
+    font-family: 'Roboto', 'Google Sans', Arial, sans-serif;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.g-login-wrapper {
+    width: 100%;
+    max-width: 500px;
+    /* Expanded width */
+}
+
+.g-login-card {
+    background: #fff;
+    border: 1px solid var(--google-border);
+    border-radius: 28px;
+    /* Curve rounded box */
+    padding: 56px 48px;
+    /* Increased padding */
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    /* Soft shadow for better presence */
+}
+
+.g-logo {
+    margin-bottom: 24px;
+}
+
+.g-logo img {
+    height: 64px;
+    width: auto;
+}
+
+.g-title {
+    font-size: 24px;
+    font-weight: 400;
+    margin: 0 0 8px;
+    line-height: 1.3333;
+}
+
+.g-subtitle {
+    font-size: 16px;
+    margin: 0 0 24px;
+    color: #202124;
+}
+
+.g-alert {
+    background-color: transparent;
+    border: 1px solid var(--google-error);
+    color: var(--google-error);
+    padding: 8px 12px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    text-align: left;
+    display: flex;
+    align-items: center;
+}
+
+.g-alert::before {
+    content: '⚠️';
+    margin-right: 8px;
+}
+
+.g-form-group {
+    position: relative;
+    margin-bottom: 24px;
+    text-align: left;
+}
+
+.g-input {
+    width: 100%;
+    height: 60px;
+    /* Slightly taller */
+    padding: 13px 50px;
+    /* Symmetrical padding for better centering */
+    border: 1px solid var(--google-border);
+    border-radius: 12px;
+    font-size: 16px;
+    background: transparent;
+    outline: none;
+    transition: all 0.2s;
+    text-align: center;
+    /* Center input text */
+}
+
+.g-input:focus {
+    border: 2px solid var(--google-blue);
+    padding: 12px 19px;
+}
+
+.g-input:hover:not(:focus) {
+    border-color: #202124;
+}
+
+.g-label {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    /* Perfectly center vertically and horizontally */
+    color: var(--google-gray);
+    pointer-events: none;
+    transition: 0.2s all;
+    font-size: 16px;
+    width: auto;
+    text-align: center;
+    background: white;
+    /* Ensure bg is white to cover input border when moving up */
+    padding: 0 4px;
+    white-space: nowrap;
+}
+
+.g-input:focus~.g-label,
+.g-input:not(:placeholder-shown)~.g-label {
+    top: 0;
+    transform: translate(-50%, -50%);
+    font-size: 12px;
+    color: var(--google-blue);
+    z-index: 10;
+    background: white;
+    padding: 0 8px;
+}
+
+/* Custom Select styling */
+.g-select {
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%235f6368" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    background-size: 18px;
+    padding-right: 40px !important;
+}
+
+.g-select:invalid {
+    color: var(--google-gray);
+}
+
+.g-select:focus ~ .g-label,
+.g-select:valid ~ .g-label {
+    top: 0 !important;
+    transform: translate(-50%, -50%) !important;
+    font-size: 12px !important;
+    color: var(--google-blue) !important;
+    z-index: 10 !important;
+    background: white !important;
+    padding: 0 8px !important;
+}
+
+.g-input:not(:focus):not(:placeholder-shown)~.g-label {
+    color: var(--google-gray);
+}
+
+/* Error Modal Styles */
+.g-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(32, 33, 36, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    backdrop-filter: blur(2px);
+}
+
+.g-modal-card {
+    background: #fff;
+    width: 90%;
+    max-width: 400px;
+    padding: 32px;
+    border-radius: 24px;
+    text-align: center;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+    animation: gModalPop 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes gModalPop {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.g-modal-icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+    color: #d93025;
+}
+
+.g-modal-title {
+    font-size: 22px;
+    font-weight: 500;
+    margin: 0 0 12px;
+    color: #202124;
+}
+
+.g-modal-text {
+    font-size: 14px;
+    color: #5f6368;
+    line-height: 1.5;
+    margin-bottom: 24px;
+}
+
+.g-modal-btn {
+    width: 100%;
+    height: 48px;
+    border-radius: 24px !important;
+    font-weight: 500;
+}
+
+/* Password Toggle Style */
+.password-toggle {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #5f6368;
+    /* Explicit gray */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 20;
+    /* Higher priority */
+    padding: 8px;
+    border-radius: 50%;
+    transition: background-color 0.2s;
+    user-select: none;
+}
+
+.password-toggle:hover {
+    background-color: rgba(95, 99, 104, 0.1);
+    color: #202124;
+}
+
+.password-toggle svg {
+    display: block;
+    pointer-events: none;
+}
+
+.g-actions {
+    display: flex;
+    justify-content: center;
+    /* Ensure actions are centered */
+    align-items: center;
+    margin-top: 36px;
+}
+
+.g-link {
+    color: var(--google-blue);
+    font-weight: 500;
+    font-size: 14px;
+    text-decoration: none;
+    padding: 9px 0;
+}
+
+.g-link:hover {
+    text-decoration: underline;
+}
+
+.g-btn {
+    background-color: var(--google-blue);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 0 24px;
+    height: 36px;
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s;
+}
+
+.g-btn:hover {
+    background-color: var(--google-blue-hover);
+    box-shadow: 0 1px 2px 0 rgba(60, 64, 67, .30), 0 1px 3px 1px rgba(60, 64, 67, .15);
+}
+
+.g-footer {
+    padding: 40px 0 20px;
+    display: flex;
+    flex-direction: column;
+    /* Stack and center */
+    align-items: center;
+    gap: 8px;
+    font-size: 15px;
+    /* Bigger */
+    color: #202124;
+    /* Darker */
+    font-weight: 500;
+}
+
+.g-footer strong {
+    font-weight: 800;
+    /* Extra Bold */
+    color: #000;
+}
+
+.g-footer-links a {
+    color: #202124;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.g-footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+}
+
+.g-footer-links a {
+    color: #747775;
+    text-decoration: none;
+}
+
+.g-footer-links a:hover {
+    color: #202124;
+}
+
+/* Mobile Responsive */
+@media (max-width: 600px) {
+    body {
+        background-color: #fff;
+        align-items: flex-start;
+        padding-top: 20px;
+    }
+
+    .g-login-card {
+        border: none;
+        padding: 40px 24px;
+    }
+
+    .g-footer {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        text-align: center;
+        padding-bottom: 24px;
+    }
+}

@@ -1,0 +1,17 @@
+# ============================================================================
+# PROTECT APP DIRECTORY
+# ============================================================================
+
+# Allow only handlers; block other PHP in this directory tree
+RewriteEngine On
+# Allow anything under handlers/ (PHP endpoints)
+RewriteRule ^handlers/ - [L]
+# Block all other PHP files
+RewriteRule .*\.php - [F]
+
+# Prevent directory listing
+Options -Indexes
+
+
+
+

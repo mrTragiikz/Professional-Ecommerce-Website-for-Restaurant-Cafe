@@ -1,0 +1,384 @@
+/* Mobile Navigation V3 - Scoped to .dv-mnav-* to prevent conflicts */
+
+/* 
+ * Hide V3 mobile elements on desktop 
+ * Ensure no interference with desktop layout 
+ */
+@media (min-width: 769px) {
+
+    .dv-mnav-right,
+    .dv-mnav-overlay,
+    .dv-mnav-drawer {
+        display: none !important;
+    }
+}
+
+/* 
+ * Mobile Styles (max-width: 768px)
+ * Only apply these styles when on mobile devices
+ */
+@media (max-width: 768px) {
+
+    /* --- Right-side Header Controls --- */
+    .dv-mnav-right {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 12px;
+        /* Space between profile and hamburger */
+        position: relative;
+        z-index: 10001;
+    }
+
+    /* Profile Button (Circle) */
+    .dv-mnav-profile {
+        width: 60px;
+        height: 60px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        /* Circle structure */
+        background: #ffffff;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        /* background: #f0f0f0; */
+        color: #333;
+        text-decoration: none;
+        transition: background 0.2s;
+    }
+
+    .dv-mnav-profile:hover {
+        background: #f9f9f9;
+        color: #333;
+    }
+
+    .dv-mnav-profile:active {
+        background: #f0f0f0;
+    }
+
+    /* Fallback Icon */
+    .dv-mnav-usericon {
+        font-size: 36px;
+        /* Improved visibility */
+        width: 36px;
+        height: 36px;
+        display: block;
+    }
+
+    /* Avatar Image */
+    .dv-mnav-avatar {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        /* Circle structure */
+        object-fit: cover;
+        display: block;
+        padding: 2px;
+        /* Slight padding */
+    }
+
+    /* Logic: 
+       - Default: Icon shows.
+       - If avatar exists (img), hide icon via sibling selector.
+       - If fallback class added (JS onError), force show icon.
+    */
+    /* .dv-mnav-profile .dv-mnav-usericon { display: none; }  <- REMOVED THIS */
+
+    /* 1. If img is present (and presumably valid), hide the icon adjacent to it. */
+    .dv-mnav-profile img+.dv-mnav-usericon {
+        display: none;
+    }
+
+    /* 2. If fallback class is present, force icon to show */
+    .dv-mnav-profile.dv-mnav-avatar-fallback .dv-mnav-usericon {
+        display: block !important;
+    }
+
+    /* If fallback class is present, hide broken image */
+    .dv-mnav-profile.dv-mnav-avatar-fallback .dv-mnav-avatar {
+        display: none;
+    }
+
+    /* Default state: if no image is present in HTML (e.g. PHP didn't output img), 
+       we need to ensure icon shows. This requires a slight structure change or 
+       CSS :empty or :not(:has(img)). 
+       
+       Simpler approach: Navbar PHP logic ensures either IMG or I is output? 
+       Actually, previous logic outputs BOTH img and i. 
+       So we need to hide the icon if the img is present and not broken.
+    */
+
+    /* Refined Logic for Profile Button Content Visibility */
+    /* 1. If img is present (and presumably valid), hide the icon adjacent to it. */
+    .dv-mnav-profile img+.dv-mnav-usericon {
+        display: none;
+    }
+
+    /* 2. BUT if the parent has fallback class, force icon to show */
+    .dv-mnav-profile.dv-mnav-avatar-fallback .dv-mnav-usericon {
+        display: block !important;
+    }
+
+    /* 3. If NO image is present (guest user), the icon is the only child, so it shows naturally. */
+
+
+    /* Hamburger Toggle Button (Square-ish with rounded corners) */
+    .dv-mnav-btn {
+        width: 60px;
+        height: 60px;
+        /* match profile size */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #ffffff;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 12px;
+        /* Slightly rounded */
+        cursor: pointer;
+        padding: 0;
+        transition: background 0.2s;
+    }
+
+    .dv-mnav-btn:hover {
+        background: #f9f9f9;
+    }
+
+    .dv-mnav-btn:active {
+        background: #f0f0f0;
+    }
+
+    /* Bars Icon */
+    .dv-mnav-bars {
+        position: relative;
+        width: 24px;
+        height: 2px;
+        background-color: #333;
+        display: block;
+        border-radius: 2px;
+    }
+
+    .dv-mnav-bars::before,
+    .dv-mnav-bars::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        width: 24px;
+        height: 2px;
+        background-color: #333;
+        border-radius: 2px;
+    }
+
+    .dv-mnav-bars::before {
+        top: -8px;
+    }
+
+    .dv-mnav-bars::after {
+        top: 8px;
+    }
+
+    /* --- Overlay --- */
+    .dv-mnav-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 99999990 !important;
+        /* High z-index but below drawer */
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+        backdrop-filter: blur(2px);
+    }
+
+    .dv-mnav-overlay.dv-mnav-visible {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    /* --- Drawer --- */
+    .dv-mnav-drawer {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 80%;
+        max-width: 300px;
+        height: 100%;
+        background-color: #ffffff;
+        z-index: 99999999 !important;
+        /* Above overlay */
+        transform: translateX(110%);
+        transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+    }
+
+    .dv-mnav-drawer.dv-mnav-open {
+        transform: translateX(0);
+    }
+
+    /* Drawer Header */
+    .dv-mnav-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px 20px;
+        border-bottom: 1px solid #eee;
+    }
+
+    .dv-mnav-title {
+        font-size: 1.25rem;
+        font-weight: bold;
+        color: #333;
+        font-family: inherit;
+        /* Inherit font from body */
+    }
+
+    .dv-mnav-close {
+        background: #ef4444;
+        border: none;
+        width: 32px;
+        height: 32px;
+        border-radius: 999px;
+        font-size: 1.4rem;
+        cursor: pointer;
+        color: #ffffff;
+        padding: 0;
+        line-height: 1;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 3px 10px rgba(239, 68, 68, 0.35);
+    }
+
+    .dv-mnav-close:hover {
+        background: #dc2626;
+        color: #ffffff;
+    }
+
+    /* Drawer Links */
+    .dv-mnav-links {
+        flex: 1;
+        overflow-y: auto;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .dv-mnav-links a {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        color: #111827;
+        font-size: 1rem;
+        font-weight: 600;
+        padding: 14px 4px 14px 22px;
+        letter-spacing: 0.01em;
+        text-align: center;
+        transition:
+            color 0.2s ease,
+            padding-left 0.2s ease,
+            background-color 0.2s ease,
+            box-shadow 0.2s ease;
+    }
+
+    /* Soft grey line (divider) under each row */
+    .dv-mnav-links a::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 1px;
+        background: linear-gradient(to right, rgba(148, 163, 184, 0.2), rgba(148, 163, 184, 0.08));
+    }
+
+    /* Colorful left accent bar for each item */
+    .dv-mnav-links a::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 10px;
+        bottom: 10px;
+        width: 3px;
+        border-radius: 999px;
+        background: linear-gradient(180deg, #22c55e, #16a34a);
+        opacity: 0.7;
+        transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    /* Different colors per row */
+    .dv-mnav-links a:nth-child(1)::before {
+        background: linear-gradient(180deg, #34d399, #22c55e);
+    }
+
+    .dv-mnav-links a:nth-child(2)::before {
+        background: linear-gradient(180deg, #38bdf8, #0ea5e9);
+    }
+
+    .dv-mnav-links a:nth-child(3)::before {
+        background: linear-gradient(180deg, #fb7185, #f97316);
+    }
+
+    .dv-mnav-links a:nth-child(4)::before {
+        background: linear-gradient(180deg, #a855f7, #6366f1);
+    }
+
+    .dv-mnav-links a:nth-child(5)::before {
+        background: linear-gradient(180deg, #facc15, #eab308);
+    }
+
+    /* Remove divider under the very last nav item (Profile) so Logout stands alone */
+    .dv-mnav-links a:last-of-type::after {
+        display: none;
+    }
+
+    .dv-mnav-links a:hover {
+        color: #e67e22;
+        padding-left: 10px;
+        background-color: rgba(248, 250, 252, 0.95);
+        box-shadow: 0 4px 10px rgba(15, 23, 42, 0.05);
+    }
+
+    .dv-mnav-links a:hover::before {
+        opacity: 1;
+        transform: scaleX(1.15);
+    }
+
+    /* Logout Form/Button */
+    .dv-mnav-logout {
+        margin-top: auto;
+        /* Push to bottom if desired, or just list flow */
+        padding-top: 16px;
+    }
+
+    .dv-mnav-logout button {
+        width: 100%;
+        padding: 14px;
+        background-color: #ef4444;
+        color: #ffffff;
+        border: 2px solid #ef4444;
+        border-radius: 14px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: background 0.2s ease, border-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+        letter-spacing: 0.03em;
+    }
+
+    .dv-mnav-logout button:hover {
+        background-color: #dc2626;
+        border-color: #dc2626;
+        box-shadow: 0 4px 14px rgba(239, 68, 68, 0.35);
+        transform: translateY(-1px);
+    }
+
+    .dv-mnav-logout button:active {
+        transform: translateY(0);
+        box-shadow: none;
+    }
+}

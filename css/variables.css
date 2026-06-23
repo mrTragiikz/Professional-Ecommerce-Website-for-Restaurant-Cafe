@@ -1,0 +1,103 @@
+/* ============================================
+   CSS VARIABLES & DESIGN TOKENS
+   ============================================
+   
+   This file contains all CSS custom properties (variables)
+   used throughout the website. Update colors, spacing, and
+   other design tokens here to maintain consistency.
+   ============================================ */
+
+:root {
+   /* ========================================
+       COLOR PALETTE
+       ======================================== */
+   --orange: #FFA53B;
+   /* Primary brand color - used for accents, buttons, active states */
+   --black: #1E1E1E;
+   /* Primary text color - main content text */
+   --gray: #6F6F6F;
+   /* Secondary text color - less important text */
+   --white: #FFFFFF;
+   /* Background and text on dark surfaces */
+
+   /* ========================================
+       SHADOWS & EFFECTS
+       ======================================== */
+   --shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+   /* Standard shadow for cards and elevated elements */
+   --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+   /* Small shadow for subtle elevation */
+   --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
+   /* Medium shadow */
+   --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.15);
+   /* Large shadow for modals */
+
+   /* ========================================
+       Z-INDEX LAYERS
+       ======================================== */
+   --z-navbar: 11000;
+   /* Navigation bar - always on top */
+   --z-modal: 10000;
+   /* Modal overlays */
+   --z-dropdown: 5000;
+   /* Dropdown menus */
+   --z-tooltip: 3000;
+   /* Tooltips */
+   --z-content: 100;
+   /* Regular content */
+
+   /* ========================================
+       SPACING SCALE
+       ======================================== */
+   --spacing-xs: 4px;
+   --spacing-sm: 8px;
+   --spacing-md: 16px;
+   --spacing-lg: 24px;
+   --spacing-xl: 32px;
+   --spacing-2xl: 48px;
+   --spacing-3xl: 64px;
+
+   /* ========================================
+       TYPOGRAPHY
+       ======================================== */
+   --font-primary: 'Inter', system-ui, -apple-system, sans-serif;
+   --font-heading: 'Cormorant Garamond', serif;
+   --font-logo: 'Poppins', sans-serif;
+
+   /* ========================================
+       TRANSITIONS & ANIMATIONS
+       ======================================== */
+   --transition-fast: 0.2s ease;
+   --transition-base: 0.3s ease;
+   --transition-slow: 0.5s ease;
+   --transition-bounce: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+   /* ========================================
+       BORDER RADIUS
+       ======================================== */
+   --radius-sm: 6px;
+   --radius-md: 12px;
+   --radius-lg: 20px;
+   --radius-full: 50%;
+
+   /* ========================================
+       GLASS MORPHISM (Navbar)
+       ======================================== */
+   --glass-bg: rgba(34, 139, 80, 0.55);
+   /* Forest green glass base */
+   --glass-border: rgba(60, 180, 100, 0.45);
+   /* Fresh green border */
+   --glass-shadow: rgba(20, 100, 50, 0.22);
+   /* Deep green shadow */
+   --blur-lg: blur(18px);
+   --blur-md: blur(10px);
+   --color-accent: #22a855;
+   /* Green accent for underline */
+
+   /* ========================================
+       BREAKPOINTS (for reference in comments)
+       ======================================== */
+   /* Mobile: 0-768px */
+   /* Tablet: 769px-1024px */
+   /* Desktop: 1025px+ */
+}
