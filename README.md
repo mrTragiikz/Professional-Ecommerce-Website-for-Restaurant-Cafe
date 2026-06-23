@@ -160,3 +160,20 @@ This project demonstrates:
 - Restaurant delivery platform design
 - Multi-branch business management systems
 - API integration and geolocation services
+
+
+Interested in deploying a professional food ordering and delivery platform for your Café, Restaurant, Hotel, or College Project?
+
+Get a fully customized solution with online ordering, delivery tracking, rider management, payment integration, and powerful admin controls tailored to your requirements.
+
+* Affordable pricing
+* Custom feature development
+* Mobile-friendly design
+* Secure and scalable architecture
+* Deployment and ongoing support
+
+Contact me for a live demo and the best pricing.
+
+Prabin Sharma
+Email: [sharmaprabin160@gmail.com](mailto:sharmaprabin160@gmail.com)
+Phone: +977 9761734136
